@@ -1,0 +1,26 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.grid {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 60vh;
+  height: 60vh;
+  gap: 1px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+  gap: 1px;
+}
+
+.colorBox {
+  font-size: .001px;
+  flex-grow: 1;
+
+}
