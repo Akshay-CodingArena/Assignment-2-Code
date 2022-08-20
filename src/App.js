@@ -46,55 +46,6 @@ export default function App() {
   }, [randomColors]);
 
   useEffect(() => {
-    function adjascentElements(arr, count, visited, color, indexes) {
-      let rows = arr.length;
-      let columns = arr[1]?.length ?? 1;
-      let gvisited = visited;
-      let gcount = count;
-      let initialI = indexes[0];
-      let initialJ = indexes[1];
-      return function recurse(i = initialI, j = initialJ) {
-        if (
-          j < columns - 1 &&
-          arr[i][j + 1] === color &&
-          gvisited.indexOf("" + i + "," + (j + 1)) < 0
-        ) {
-          gcount += 1;
-          gvisited += " " + i + "," + (j + 1);
-          recurse(i, j + 1, gcount, gvisited);
-        }
-        if (
-          j > 0 &&
-          arr[i][j - 1] === color &&
-          gvisited.indexOf("" + i + "," + (j - 1)) < 0
-        ) {
-          gcount += 1;
-          gvisited += " " + i + "," + (j - 1);
-          recurse(i, j - 1, gcount, gvisited);
-        }
-        if (
-          i < rows - 1 &&
-          arr[i + 1][j] === color &&
-          gvisited.indexOf("" + (i + 1) + "," + j) < 0
-        ) {
-          gcount += 1;
-          gvisited += " " + (i + 1) + "," + j;
-          recurse(i + 1, j, gcount, gvisited);
-        }
-        if (
-          i > 0 &&
-          arr[i - 1][j] === color &&
-          gvisited.indexOf("" + (i - 1) + "," + j) < 0
-        ) {
-          gcount += 1;
-          gvisited += " " + (i - 1) + "," + j;
-          recurse(i - 1, j, gcount, gvisited);
-        }
-
-        return [gcount, gvisited];
-      };
-    }
-
     let codegrid = [];
     for (let i in grid) {
       codegrid.push([]);
@@ -181,6 +132,7 @@ export default function App() {
   );
 }
 
+// To make the final grid that will be painted on the screen
 function finalResult(grid, largestGroup) {
   const result = [];
   for (let i in grid) {
@@ -204,4 +156,55 @@ function finalResult(grid, largestGroup) {
     }
   }
   return result;
+}
+
+
+// To get the indexes of the largest group
+function adjascentElements(arr, count, visited, color, indexes) {
+  let rows = arr.length;
+  let columns = arr[1]?.length ?? 1;
+  let gvisited = visited;
+  let gcount = count;
+  let initialI = indexes[0];
+  let initialJ = indexes[1];
+  return function recurse(i = initialI, j = initialJ) {
+    if (
+      j < columns - 1 &&
+      arr[i][j + 1] === color &&
+      gvisited.indexOf("" + i + "," + (j + 1)) < 0
+    ) {
+      gcount += 1;
+      gvisited += " " + i + "," + (j + 1);
+      recurse(i, j + 1, gcount, gvisited);
+    }
+    if (
+      j > 0 &&
+      arr[i][j - 1] === color &&
+      gvisited.indexOf("" + i + "," + (j - 1)) < 0
+    ) {
+      gcount += 1;
+      gvisited += " " + i + "," + (j - 1);
+      recurse(i, j - 1, gcount, gvisited);
+    }
+    if (
+      i < rows - 1 &&
+      arr[i + 1][j] === color &&
+      gvisited.indexOf("" + (i + 1) + "," + j) < 0
+    ) {
+      gcount += 1;
+      gvisited += " " + (i + 1) + "," + j;
+      recurse(i + 1, j, gcount, gvisited);
+    }
+    if (
+      i > 0 &&
+      arr[i - 1][j] === color &&
+      gvisited.indexOf("" + (i - 1) + "," + j) < 0
+    ) {
+      gcount += 1;
+      gvisited += " " + (i - 1) + "," + j;
+      recurse(i - 1, j, gcount, gvisited);
+    }
+
+    return [gcount, gvisited];
+  };
 }
