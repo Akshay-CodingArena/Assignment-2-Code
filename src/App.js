@@ -87,17 +87,17 @@ export default function App() {
   return (
     <>
     <div style={{display:"flex",justifyContent:"center", width:"100vw", height:"100vh",  background: "linear-gradient(90deg,lightblue, white)"}}>
-      <div>
+      <div align="center">
       <h1 align="center">Assignment 2</h1>
       <table style={{margin:"20px",maxWidth:"500px"}}>
       <tr>
-      <td><label htmlFor="rows" > Enter the no. of Rows :  </label></td> <td> <input id="rows" placeholder="Rows" type="number" ref={rows} /></td>
+      <td><label htmlFor="rows" > Enter the no. of Rows   </label></td> <td> <input id="rows" placeholder="Rows" type="number" ref={rows} /></td>
        </tr>
        <tr>
-       <td><label htmlFor="columns" > Enter the no. of Columns : </label></td><td><input id="columns" placeholder="Columns" type="number" ref={columns} /></td>
+       <td><label htmlFor="columns" > Enter the no. of Columns  </label></td><td><input id="columns" placeholder="Columns" type="number" ref={columns} /></td>
        </tr>
        <tr>
-       <td><label htmlFor="colors" > Enter the no. of Colors : </label></td><td><input id="colors" placeholder="Colors" type="number" ref={colors} /></td>
+       <td><label htmlFor="colors" > Enter the no. of Colors  </label></td><td><input id="colors" placeholder="Colors" type="number" ref={colors} /></td>
        </tr>
        <tr>
        <td></td><td ><button onClick={handleClick}>Generate</button>

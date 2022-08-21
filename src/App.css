@@ -24,3 +24,14 @@
   flex-grow: 1;
 
 }
+
+@media screen and (max-width: 800px) {
+  .grid {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: 90vw;
+    gap: 1px;
+  }
+}
